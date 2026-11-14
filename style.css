@@ -153,14 +153,160 @@ body {
   border-radius: 10px;
 }
 
-/* 임시 메인 */
+/* 메인 영역 */
 main {
-  min-height: 600px;
-  padding: 80px 10%;
+  background-color: #efe1c8;
+}
+
+/* 메인 배너 */
+.hero {
+  position: relative;
+
+  min-height: 430px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 10%;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.6),
+      rgba(239, 225, 200, 0.9)
+    );
+}
+
+/* 중앙 타이틀 */
+.hero-title {
+  position: relative;
+  z-index: 2;
 
   text-align: center;
 }
 
-main h1 {
-  font-size: 48px;
+/* 상단 영문 */
+.hero-subtitle {
+  margin: 0 0 12px;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+
+  color: #30241c;
+}
+
+/* 메인 제목 */
+.hero-title h1 {
+  margin: 0;
+
+  font-size: clamp(50px, 7vw, 105px);
+  font-weight: 900;
+
+  letter-spacing: -7px;
+
+  line-height: 1;
+}
+
+/* 치킨게임 */
+.title-chicken {
+  color: #9e2924;
+
+  text-shadow:
+    3px 3px 0 rgba(255, 215, 130, 0.7);
+}
+
+/* 기록실 */
+.title-record {
+  color: #28201a;
+}
+
+/* 하단 영문 */
+.hero-english {
+  margin-top: 18px;
+
+  font-size: 20px;
+  font-weight: 800;
+
+  letter-spacing: 4px;
+
+  color: #30241c;
+}
+
+/* 왼쪽 캐릭터 */
+.hero-character {
+  position: absolute;
+
+  left: 11%;
+
+  font-size: clamp(80px, 10vw, 160px);
+
+  transform: rotate(-12deg);
+
+  opacity: 0.9;
+}
+
+/* 오른쪽 문구 */
+.hero-message {
+  position: absolute;
+
+  right: 10%;
+
+  text-align: center;
+
+  transform: rotate(-8deg);
+
+  color: #39251f;
+
+  font-size: clamp(16px, 1.8vw, 27px);
+
+  line-height: 1.5;
+}
+
+.hero-message p {
+  margin: 0;
+
+  font-weight: 600;
+}
+
+.hero-message strong {
+  display: block;
+
+  color: #8f2723;
+}
+
+.message-line {
+  display: block;
+
+  width: 150px;
+  height: 4px;
+
+  margin: 8px auto 0;
+
+  background-color: #b62c27;
+
+  border-radius: 50%;
+
+  transform: rotate(-3deg);
+}
+
+/* 모바일 대응 */
+@media (max-width: 900px) {
+
+  .hero-character {
+    left: 4%;
+    opacity: 0.25;
+  }
+
+  .hero-message {
+    display: none;
+  }
+
+  .hero-title h1 {
+    letter-spacing: -4px;
+  }
 }
