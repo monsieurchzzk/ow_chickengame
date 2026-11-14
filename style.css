@@ -468,3 +468,55 @@ main {
 
   border-bottom: 1px solid rgba(116, 61, 39, 0.2);
 }
+
+/* =========================
+   메인 타이틀 장식
+========================= */
+
+.title-decoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-bottom: 12px;
+
+  color: #9e2924;
+}
+
+.title-decoration span {
+  width: 70px;
+  height: 2px;
+
+  background-color: #9e2924;
+}
+
+.title-decoration b {
+  font-size: 16px;
+}
+
+/* 타이틀 하단 영문 */
+.hero-english {
+  margin-bottom: 14px;
+}
+
+/* 스탬프 느낌 */
+.title-stamp {
+  display: inline-block;
+
+  padding: 5px 12px;
+
+  border: 2px solid #8f2723;
+
+  color: #8f2723;
+
+  font-size: 11px;
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  transform: rotate(-3deg);
+
+  opacity: 0.8;
+}
