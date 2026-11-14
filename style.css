@@ -310,3 +310,91 @@ main {
     letter-spacing: -4px;
   }
 }
+
+/* =========================
+   메인 바로가기 메뉴
+========================= */
+
+.quick-menu {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 22px;
+
+  padding: 25px 8% 45px;
+
+  background-color: #efe1c8;
+}
+
+/* 메뉴 카드 */
+.quick-card {
+  min-height: 95px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  padding: 18px 20px;
+
+  text-decoration: none;
+  color: #2b2118;
+
+  background-color: #f7ead4;
+
+  border: 2px solid #c9aa7d;
+  border-radius: 8px;
+
+  box-shadow:
+    4px 5px 0 rgba(92, 60, 35, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* 마우스를 올렸을 때 */
+.quick-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    5px 9px 0 rgba(92, 60, 35, 0.22);
+}
+
+/* 아이콘 */
+.quick-icon {
+  font-size: 34px;
+}
+
+/* 메뉴 이름 */
+.quick-text {
+  font-size: clamp(18px, 1.5vw, 25px);
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+/* 화살표 */
+.quick-arrow {
+  font-size: 34px;
+  line-height: 1;
+
+  color: #6d3e22;
+}
+
+/* 화면이 좁아지면 2줄 배치 */
+@media (max-width: 900px) {
+
+  .quick-menu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 모바일에서는 한 줄씩 */
+@media (max-width: 520px) {
+
+  .quick-menu {
+    grid-template-columns: 1fr;
+  }
+}
