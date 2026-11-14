@@ -442,3 +442,29 @@ main {
     padding: 20px 6% 35px;
   }
 }
+
+/* =========================
+   체크무늬 장식
+========================= */
+
+.gingham-border {
+  width: 100%;
+  height: 18px;
+
+  background-color: #f4dfbd;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(169, 45, 39, 0.32) 50%,
+      transparent 50%
+    ),
+    linear-gradient(
+      rgba(169, 45, 39, 0.32) 50%,
+      transparent 50%
+    );
+
+  background-size: 24px 24px;
+
+  border-bottom: 1px solid rgba(116, 61, 39, 0.2);
+}
