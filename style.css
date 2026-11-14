@@ -1,4 +1,7 @@
-/* 기본 설정 */
+/* =========================
+   기본 설정
+========================= */
+
 * {
   box-sizing: border-box;
 }
@@ -10,7 +13,16 @@ body {
   color: #2b2118;
 }
 
-/* 상단 네비게이션 */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+
+/* =========================
+   상단 네비게이션
+========================= */
+
 .top-nav {
   width: 100%;
   height: 74px;
@@ -20,37 +32,42 @@ body {
 
   padding: 0 7%;
 
-  background: linear-gradient(
-    90deg,
-    #7f1d1d,
-    #a42a25,
-    #7f1d1d
-  );
+  /* 새 헤더 이미지 적용 */
+  background-image: url("assets/img/header_background.png");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 
-  border-bottom: 2px solid rgba(255, 214, 120, 0.5);
+  border-bottom: 2px solid rgba(255, 214, 120, 0.4);
 }
 
+
 /* 로고 */
+
 .logo {
   display: flex;
   align-items: center;
   gap: 10px;
 
+  min-width: 230px;
+
   color: white;
   text-decoration: none;
-
-  min-width: 230px;
 }
 
 .logo-icon {
-  font-size: 35px;
+  width: 52px;
+  height: 52px;
+
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .logo-text {
   display: flex;
   flex-direction: column;
 
-  font-weight: 800;
+  font-weight: 900;
   font-style: italic;
 
   line-height: 1;
@@ -61,23 +78,31 @@ body {
 }
 
 .logo-text strong {
+  margin-top: 3px;
+
   color: #f5c518;
   font-size: 20px;
 }
 
+
 /* 메뉴 */
+
 .nav-menu {
   flex: 1;
 
-  display: flex;
-  justify-content: center;
-  gap: 60px;
-
   height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: clamp(25px, 4vw, 60px);
 }
 
 .nav-menu a {
   position: relative;
+
+  height: 100%;
 
   display: flex;
   align-items: center;
@@ -91,7 +116,6 @@ body {
   white-space: nowrap;
 }
 
-/* 선택된 메뉴 */
 .nav-menu a.active {
   color: #ffd329;
 }
@@ -100,26 +124,35 @@ body {
   content: "";
 
   position: absolute;
+
+  left: 50%;
   bottom: 12px;
 
   width: 42px;
   height: 4px;
 
+  transform: translateX(-50%);
+
   background-color: #ffd329;
   border-radius: 10px;
 }
 
-/* 검색 아이콘 */
+
+/* 검색 버튼 */
+
 .search-button {
   width: 45px;
   height: 45px;
+
+  margin-left: 20px;
 
   border: none;
   background: transparent;
 
   cursor: pointer;
-
   position: relative;
+
+  flex-shrink: 0;
 }
 
 .search-button span {
@@ -153,42 +186,49 @@ body {
   border-radius: 10px;
 }
 
-/* 메인 영역 */
+
+/* =========================
+   메인 영역
+========================= */
+
 main {
   background-color: #efe1c8;
 }
 
-/* 메인 배너 */
+
+/* =========================
+   메인 배너
+========================= */
+
 .hero {
   position: relative;
 
-  min-height: 430px;
+  height: 430px;
+
+  overflow: hidden;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 40px 10%;
-
-  overflow: hidden;
-
   background:
     radial-gradient(
       circle at center,
-      rgba(255, 255, 255, 0.6),
-      rgba(239, 225, 200, 0.9)
+      rgba(255, 255, 255, 0.65),
+      rgba(239, 225, 200, 0.95)
     );
 }
 
-/* 중앙 타이틀 */
+
+/* 중앙 제목 */
+
 .hero-title {
   position: relative;
-  z-index: 2;
+  z-index: 3;
 
   text-align: center;
 }
 
-/* 상단 영문 */
 .hero-subtitle {
   margin: 0 0 12px;
 
@@ -200,19 +240,16 @@ main {
   color: #30241c;
 }
 
-/* 메인 제목 */
 .hero-title h1 {
   margin: 0;
 
-  font-size: clamp(50px, 7vw, 105px);
+  font-size: clamp(50px, 6vw, 100px);
   font-weight: 900;
 
   letter-spacing: -7px;
-
   line-height: 1;
 }
 
-/* 치킨게임 */
 .title-chicken {
   color: #9e2924;
 
@@ -220,12 +257,10 @@ main {
     3px 3px 0 rgba(255, 215, 130, 0.7);
 }
 
-/* 기록실 */
 .title-record {
   color: #28201a;
 }
 
-/* 하단 영문 */
 .hero-english {
   margin-top: 18px;
 
@@ -237,105 +272,222 @@ main {
   color: #30241c;
 }
 
-/* 왼쪽 캐릭터 */
-/* 왼쪽 치킨 장식 */
+
+/* 왼쪽 치킨 캐릭터 */
+
 .hero-character {
   position: absolute;
 
-  left: 10%;
-  bottom: 35px;
+  z-index: 1;
 
-  width: 180px;
-  height: 180px;
+  left: 5%;
+  bottom: -40px;
+
+  width: clamp(250px, 30vw, 500px);
+}
+
+.hero-character img {
+  width: 100%;
+  height: auto;
+}
+
+
+/* 오른쪽 손글씨 */
+
+.hero-message {
+  position: absolute;
+
+  z-index: 2;
+
+  right: 5%;
+  top: 50%;
+
+  width: clamp(260px, 25vw, 430px);
+
+  transform: translateY(-50%);
+}
+
+.hero-message img {
+  width: 100%;
+  height: auto;
+}
+
+
+/* =========================
+   메인 바로가기 메뉴
+========================= */
+
+.quick-menu {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 20px;
+
+  padding: 25px 8% 45px;
+
+  background-color: #efe1c8;
+}
+
+
+/* 카드 */
+
+.quick-card {
+  position: relative;
+
+  min-height: 105px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  transform: rotate(-8deg);
+  text-decoration: none;
+
+  overflow: visible;
+}
+
+
+/* 종이 버튼 이미지 */
+
+.quick-card-bg {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: fill;
 
   z-index: 1;
+
+  pointer-events: none;
 }
 
-/* 임시 치킨 마크 */
-.chicken-mark {
+
+/* 버튼 위 콘텐츠 */
+
+.quick-content {
   position: relative;
+
   z-index: 2;
 
-  font-size: clamp(100px, 11vw, 180px);
+  width: 100%;
+  height: 100%;
 
-  filter:
-    drop-shadow(5px 7px 0 rgba(111, 61, 32, 0.18));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 15px 20px;
+
+  color: #2b2118;
 }
 
-/* 바닥 그림자 */
-.character-shadow {
-  position: absolute;
 
-  bottom: 5px;
+/* 임시 아이콘 */
 
-  width: 115px;
-  height: 20px;
-
-  background-color: rgba(103, 61, 35, 0.16);
-
-  border-radius: 50%;
-
-  transform: rotate(-5deg);
+.quick-icon {
+  font-size: clamp(25px, 2vw, 36px);
 }
 
-/* 오른쪽 문구 */
-.hero-message {
-  position: absolute;
 
-  right: 10%;
+/* 메뉴 텍스트 */
 
-  text-align: center;
+.quick-text {
+  font-size: clamp(17px, 1.4vw, 24px);
+  font-weight: 900;
 
-  transform: rotate(-8deg);
+  letter-spacing: -1px;
 
-  color: #39251f;
-
-  font-size: clamp(16px, 1.8vw, 27px);
-
-  line-height: 1.5;
+  white-space: nowrap;
 }
 
-.hero-message p {
-  margin: 0;
 
-  font-weight: 600;
+/* 화살표 */
+
+.quick-arrow {
+  font-size: 32px;
+  line-height: 1;
+
+  color: #5e3822;
 }
 
-.hero-message strong {
-  display: block;
 
-  color: #8f2723;
+/* 호버 효과 */
+
+.quick-card {
+  transition: transform 0.2s ease;
 }
 
-.message-line {
-  display: block;
-
-  width: 150px;
-  height: 4px;
-
-  margin: 8px auto 0;
-
-  background-color: #b62c27;
-
-  border-radius: 50%;
-
-  transform: rotate(-3deg);
+.quick-card:hover {
+  transform: translateY(-5px);
 }
 
-/* 모바일 대응 */
-@media (max-width: 900px) {
+
+/* =========================
+   반응형
+========================= */
+
+@media (max-width: 1000px) {
+
+  .logo {
+    min-width: auto;
+  }
+
+  .nav-menu {
+    gap: 25px;
+  }
+
+  .nav-menu a {
+    font-size: 15px;
+  }
 
   .hero-character {
-    left: 2%;
-    bottom: 20px;
-    opacity: 0.22;
-    transform: scale(0.8) rotate(-8deg);
+    left: 1%;
+    width: 42vw;
+    opacity: 0.65;
+  }
+
+  .hero-message {
+    right: 2%;
+    width: 30vw;
+  }
+}
+
+
+@media (max-width: 750px) {
+
+  .top-nav {
+    padding: 0 4%;
+  }
+
+  .logo-text {
+    display: none;
+  }
+
+  .nav-menu {
+    gap: 14px;
+  }
+
+  .nav-menu a {
+    font-size: 13px;
+  }
+
+  .search-button {
+    margin-left: 5px;
+  }
+
+  .hero {
+    height: 380px;
+  }
+
+  .hero-character {
+    width: 65vw;
+    left: -15%;
+    opacity: 0.35;
   }
 
   .hero-message {
@@ -343,7 +495,32 @@ main {
   }
 
   .hero-title h1 {
+    font-size: clamp(45px, 11vw, 75px);
     letter-spacing: -4px;
+  }
+
+  .hero-english {
+    font-size: 15px;
+    letter-spacing: 2px;
+  }
+
+  .quick-menu {
+    grid-template-columns: repeat(2, 1fr);
+
+    padding: 20px 6% 35px;
+  }
+}
+
+
+@media (max-width: 480px) {
+
+  .nav-menu a:nth-child(2),
+  .nav-menu a:nth-child(3) {
+    display: none;
+  }
+
+  .quick-menu {
+    grid-template-columns: 1fr;
   }
 }
 
