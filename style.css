@@ -315,75 +315,118 @@ main {
    메인 바로가기 메뉴
 ========================= */
 
+/* =========================
+   메인 바로가기 메뉴
+========================= */
+
 .quick-menu {
+  position: relative;
+
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 
-  gap: 22px;
+  gap: 28px;
 
-  padding: 25px 8% 45px;
+  padding: 20px 8% 45px;
 
   background-color: #efe1c8;
 }
 
 /* 메뉴 카드 */
 .quick-card {
-  min-height: 95px;
+  position: relative;
+
+  min-height: 105px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  gap: 14px;
+  gap: 13px;
 
-  padding: 18px 20px;
+  padding: 20px 18px;
 
   text-decoration: none;
   color: #2b2118;
 
-  background-color: #f7ead4;
+  background:
+    linear-gradient(
+      135deg,
+      #fff4df,
+      #ead5b1
+    );
 
-  border: 2px solid #c9aa7d;
-  border-radius: 8px;
+  border: 2px solid #b89162;
+
+  /* 종이 안내판처럼 약간 불규칙한 모양 */
+  border-radius:
+    8px 12px 7px 10px /
+    10px 7px 12px 8px;
 
   box-shadow:
-    4px 5px 0 rgba(92, 60, 35, 0.18);
+    0 3px 0 #9b754d,
+    5px 7px 12px rgba(80, 48, 25, 0.22);
 
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
 }
 
+/* 카드 위쪽 종이 접힌 느낌 */
+.quick-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: -6px;
+  left: 12%;
+
+  width: 76%;
+  height: 10px;
+
+  background: rgba(255, 244, 223, 0.9);
+
+  border-radius: 50%;
+
+  opacity: 0.7;
+}
+
 /* 마우스를 올렸을 때 */
 .quick-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px) rotate(-0.5deg);
 
   box-shadow:
-    5px 9px 0 rgba(92, 60, 35, 0.22);
+    0 4px 0 #9b754d,
+    7px 12px 18px rgba(80, 48, 25, 0.28);
 }
 
 /* 아이콘 */
 .quick-icon {
-  font-size: 34px;
+  font-size: 36px;
+
+  filter:
+    drop-shadow(1px 2px 0 rgba(92, 50, 20, 0.3));
 }
 
 /* 메뉴 이름 */
 .quick-text {
-  font-size: clamp(18px, 1.5vw, 25px);
-  font-weight: 800;
+  font-size: clamp(18px, 1.45vw, 25px);
+  font-weight: 900;
+
+  letter-spacing: -1px;
 
   white-space: nowrap;
 }
 
 /* 화살표 */
 .quick-arrow {
-  font-size: 34px;
+  font-size: 35px;
   line-height: 1;
 
-  color: #6d3e22;
+  color: #5e3822;
 }
 
-/* 화면이 좁아지면 2줄 배치 */
+/* 태블릿 */
 @media (max-width: 900px) {
 
   .quick-menu {
@@ -391,10 +434,11 @@ main {
   }
 }
 
-/* 모바일에서는 한 줄씩 */
+/* 모바일 */
 @media (max-width: 520px) {
 
   .quick-menu {
     grid-template-columns: 1fr;
+    padding: 20px 6% 35px;
   }
 }
