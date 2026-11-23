@@ -45,24 +45,17 @@
 
     <div class="hero-character">
       <img
-        src="assets/img/logo_banner.png"
+        src="assets/img/logo_banner_2.png"
         alt="치킨게임 마스코트"
       />
     </div>
 
     <div class="hero-title">
-      <p class="hero-subtitle">
-        OVERWATCH STREAMER TOURNAMENT
-      </p>
-
-      <h1>
-        <span class="title-chicken">치킨게임</span>
-        <span class="title-record">기록실</span>
-      </h1>
-
-      <p class="hero-english">
-        CHICKEN GAME ARCHIVE
-      </p>
+      <img
+        class="hero-title-image"
+        src="assets/img/title.png"
+        alt="오버워치 스트리머 토너먼트 치킨게임 기록실"
+      />
     </div>
 
     <div class="hero-message">
@@ -72,66 +65,71 @@
       />
     </div>
 
-  </section>
-
-  <section class="quick-menu">
-
-    <a href="#" class="quick-card">
-      <img
-        src="assets/img/banner_button_v2.png"
-        alt=""
-        class="quick-card-bg"
-      />
-
-      <div class="quick-content">
-        <span class="quick-icon">🏆</span>
-        <span class="quick-text">역대 우승팀</span>
-        <span class="quick-arrow">›</span>
+    <section class="quick-menu">
+      <div class="quick-menu-characters" aria-hidden="true">
+        <img src="assets/img/hero_chicken_1.png" alt="" class="quick-menu-character quick-menu-character-left" />
+        <img src="assets/img/hero_chicken_2.png" alt="" class="quick-menu-character quick-menu-character-right" />
       </div>
-    </a>
 
-    <a href="#" class="quick-card">
-      <img
-        src="assets/img/banner_button_v2.png"
-        alt=""
-        class="quick-card-bg"
-      />
+      <div class="quick-menu-cards">
+        <a href="#" class="quick-card">
+          <img
+            src="assets/img/banner_button_v2.png"
+            alt=""
+            class="quick-card-bg"
+          />
 
-      <div class="quick-content">
-        <span class="quick-icon">📋</span>
-        <span class="quick-text">대회 기록</span>
-        <span class="quick-arrow">›</span>
+          <div class="quick-content">
+            <span class="quick-icon">🏆</span>
+            <span class="quick-text">역대 우승팀</span>
+            <span class="quick-arrow">›</span>
+          </div>
+        </a>
+
+        <a href="#" class="quick-card">
+          <img
+            src="assets/img/banner_button_v2.png"
+            alt=""
+            class="quick-card-bg"
+          />
+
+          <div class="quick-content">
+            <span class="quick-icon">📋</span>
+            <span class="quick-text">대회 기록</span>
+            <span class="quick-arrow">›</span>
+          </div>
+        </a>
+
+        <a href="#" class="quick-card">
+          <img
+            src="assets/img/banner_button_v2.png"
+            alt=""
+            class="quick-card-bg"
+          />
+
+          <div class="quick-content">
+            <span class="quick-icon">👥</span>
+            <span class="quick-text">역대 참가자</span>
+            <span class="quick-arrow">›</span>
+          </div>
+        </a>
+
+        <a href="#" class="quick-card">
+          <img
+            src="assets/img/banner_button_v2.png"
+            alt=""
+            class="quick-card-bg"
+          />
+
+          <div class="quick-content">
+            <span class="quick-icon">👑</span>
+            <span class="quick-text">명예의 전당</span>
+            <span class="quick-arrow">›</span>
+          </div>
+        </a>
       </div>
-    </a>
 
-    <a href="#" class="quick-card">
-      <img
-        src="assets/img/banner_button_v2.png"
-        alt=""
-        class="quick-card-bg"
-      />
-
-      <div class="quick-content">
-        <span class="quick-icon">👥</span>
-        <span class="quick-text">역대 참가자</span>
-        <span class="quick-arrow">›</span>
-      </div>
-    </a>
-
-    <a href="#" class="quick-card">
-      <img
-        src="assets/img/banner_button_v2.png"
-        alt=""
-        class="quick-card-bg"
-      />
-
-      <div class="quick-content">
-        <span class="quick-icon">👑</span>
-        <span class="quick-text">명예의 전당</span>
-        <span class="quick-arrow">›</span>
-      </div>
-    </a>
-
+    </section>
   </section>
   <section class="rulebook-section" id="rules">
   <div class="section-heading">
@@ -147,6 +145,115 @@
   </div>
 </section>
 </main>
+
+<script>
+  const rulebookContent = document.getElementById("rulebook-content");
+
+  function escapeHtml(value) {
+    return value.replace(/[&<>"']/g, (character) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    })[character]);
+  }
+
+  function inlineMarkdown(value) {
+    return escapeHtml(value)
+      .replace(/`([^`]+)`/g, "<code>$1</code>")
+      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+      .replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  }
+
+  function renderMarkdown(markdown) {
+    const lines = markdown.replace(/\r/g, "").split("\n");
+    const output = [];
+    let paragraph = [];
+    let listType = null;
+
+    const flushParagraph = () => {
+      if (paragraph.length) {
+        output.push(`<p>${paragraph.map(inlineMarkdown).join("<br>")}</p>`);
+        paragraph = [];
+      }
+    };
+    const closeList = () => {
+      if (listType) {
+        output.push(`</${listType}>`);
+        listType = null;
+      }
+    };
+
+    for (let index = 0; index < lines.length; index += 1) {
+      const line = lines[index];
+      const trimmed = line.trim();
+      if (!trimmed) {
+        flushParagraph();
+        closeList();
+        continue;
+      }
+
+      if (/^\|.*\|$/.test(trimmed)) {
+        flushParagraph();
+        closeList();
+        const rows = [];
+        while (index < lines.length && /^\s*\|.*\|\s*$/.test(lines[index])) {
+          const cells = lines[index].trim().slice(1, -1).split("|").map((cell) => cell.trim());
+          if (!cells.every((cell) => /^:?-{3,}:?$/.test(cell))) rows.push(cells);
+          index += 1;
+        }
+        index -= 1;
+        if (rows.length) {
+          const [headers, ...body] = rows;
+          output.push(`<div class="rulebook-table-wrap"><table><thead><tr>${headers.map((cell) => `<th>${inlineMarkdown(cell)}</th>`).join("")}</tr></thead><tbody>${body.map((row) => `<tr>${headers.map((_, cellIndex) => `<td>${inlineMarkdown(row[cellIndex] || "")}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`);
+        }
+        continue;
+      }
+
+      const heading = trimmed.match(/^(#{1,6})\s+(.+)$/);
+      if (heading) {
+        flushParagraph();
+        closeList();
+        const level = heading[1].length;
+        output.push(`<h${level}>${inlineMarkdown(heading[2])}</h${level}>`);
+        continue;
+      }
+      if (/^(---+|\*\*\*+|___+)$/.test(trimmed)) {
+        flushParagraph();
+        closeList();
+        output.push("<hr>");
+        continue;
+      }
+      const listItem = trimmed.match(/^([-*]|\d+\.)\s+(.+)$/);
+      if (listItem) {
+        flushParagraph();
+        const nextType = /^\d/.test(listItem[1]) ? "ol" : "ul";
+        if (listType !== nextType) {
+          closeList();
+          output.push(`<${nextType}>`);
+          listType = nextType;
+        }
+        output.push(`<li>${inlineMarkdown(listItem[2])}</li>`);
+        continue;
+      }
+      closeList();
+      paragraph.push(trimmed);
+    }
+    flushParagraph();
+    closeList();
+    return output.join("\n");
+  }
+
+  fetch("3회치킨게임_규정집.md")
+    .then((response) => {
+      if (!response.ok) throw new Error("규정집 파일을 불러오지 못했습니다.");
+      return response.text();
+    })
+    .then((markdown) => {
+      rulebookContent.innerHTML = renderMarkdown(markdown);
+      rulebookContent.classList.add("rulebook-loaded");
+    })
+    .catch(() => {
+      rulebookContent.innerHTML = '<p class="rulebook-error">규정집을 불러오지 못했습니다. 페이지를 웹 서버에서 열고 다시 시도해 주세요.</p>';
+    });
+</script>
 
 </body>
 </html>
